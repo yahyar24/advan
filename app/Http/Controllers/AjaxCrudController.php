@@ -71,16 +71,16 @@ class AjaxCrudController extends Controller
         $image = $request->image;
 
 
-        //$image = $request->file('image');
+       
 
         $new_name = time().$image->getClientOriginalName();
 
 
-       // $new_name = rand() . '.' . $image->getClientOriginalExtension();
+     
 
         $image->move('uploads/posts', $new_name);
 
-       // $image->move(public_path('images'), $new_name);
+      
 
         $form_data = array(
             'first_name'        =>  $request->first_name,
@@ -145,7 +145,9 @@ class AjaxCrudController extends Controller
             }
 
             $image_name = rand() . '.' . $image->getClientOriginalExtension();
-            $image->move(public_path('images'), $image_name);
+            $image->move(public_path('uploads/posts/'), $image_name);
+
+          
         }
         else
         {
@@ -165,7 +167,8 @@ class AjaxCrudController extends Controller
         $form_data = array(
             'first_name'       =>   $request->first_name,
             'last_name'        =>   $request->last_name,
-            'image'            =>   $image_name
+            'image' =>'uploads/posts/' .$image_name,
+
         );
         AjaxCrud::whereId($request->hidden_id)->update($form_data);
 

@@ -61,11 +61,13 @@
            </div>
                            <div class="form-group">
                     <label for="category"> اختيار التصنيف</label>
+                    <div class="col-md-8">
                     <select name="category_id" id="category" class="form-control">
                         @foreach($categories as $category)
                             <option value="{{$category->id}}">{{$category->name}}  </option>
                             @endforeach
                     </select>
+                    </div>
                 </div>
 
            <div class="form-group">
@@ -228,7 +230,7 @@ $(document).ready(function(){
     $('#first_name').val(html.data.first_name);
     $('#last_name').val(html.data.last_name);
     $('#category_id').val(html.data.category_id);
-    $('#store_image').html("<img src={{ URL::to('/') }}/images/" + html.data.image + " width='70' class='img-thumbnail' />");
+    $('#store_image').html("<img src={{ URL::to('/') }}/" + html.data.image + " width='70' class='img-thumbnail' />");
     $('#store_image').append("<input type='hidden' name='hidden_image' value='"+html.data.image+"' />");
     $('#hidden_id').val(html.data.id);
     $('.modal-title').text("Edit New Record");

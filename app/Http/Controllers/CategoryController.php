@@ -104,10 +104,13 @@ class CategoryController extends Controller
      */
     public function update(Request $request)
     {
+        $image_name = $request->hidden_image;
+        $image = $request->file('image');
         if($image != '')
         {
             $rules = array(
                 'name'    =>  'required',
+              
             );
             $error = Validator::make($request->all(), $rules);
             if($error->fails())
@@ -115,11 +118,16 @@ class CategoryController extends Controller
                 return response()->json(['errors' => $error->errors()->all()]);
             }
 
+            $image_name = rand() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('uploads/posts/'), $image_name);
+
+          
         }
         else
         {
             $rules = array(
                 'name'    =>  'required',
+                
             );
 
             $error = Validator::make($request->all(), $rules);
@@ -132,11 +140,14 @@ class CategoryController extends Controller
 
         $form_data = array(
             'name'       =>   $request->name,
+            
+
         );
         Category::whereId($request->hidden_id)->update($form_data);
 
         return response()->json(['success' => 'Data is successfully updated']);
     }
+
 
 
     /**

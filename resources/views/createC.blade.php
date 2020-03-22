@@ -178,7 +178,6 @@ $(document).ready(function(){
      {
       html = '<div class="alert alert-success">' + data.success + '</div>';
       $('#sample_form')[0].reset();
-      $('#store_image').html('');
       $('#user_table').DataTable().ajax.reload();
      }
      $('#form_result').html(html);
@@ -195,7 +194,6 @@ $(document).ready(function(){
    dataType:"json",
    success:function(html){
     $('#name').val(html.data.name);
-    
     $('#hidden_id').val(html.data.id);
     $('.modal-title').text("Edit New Record");
     $('#action_button').val("Edit");

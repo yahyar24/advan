@@ -36,3 +36,16 @@ Route::post('ajax-crud/update', 'AjaxCrudController@update')->name('ajax-crud.up
 
 Route::get('ajax-crud/destroy/{id}', 'AjaxCrudController@destroy');
 
+
+Auth::routes();
+
+
+Route::get('/dashboard', [
+    'uses' => 'HomeController@index',
+    'as' => 'dashboard'
+]);
+
+
+
+    
+    
